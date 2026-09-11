@@ -2,7 +2,7 @@
 
 Vitrine de produtos desenvolvida em **React + TypeScript + Sass**, consumindo a API de produtos da Econverse e com modal de detalhes ao clicar em um produto.
 
-🔗 **Demo:** _(publique na Vercel e cole o link aqui)_
+🔗 **Demo:** (https://teste-front-end-green.vercel.app)
 
 ---
 
@@ -88,6 +88,8 @@ src/
 │   └── formatPrice.ts     # Formatação de moeda e parcelamento (pt-BR)
 ├── App.tsx
 └── main.tsx
+api/
+└── produtos.ts        # Função serverless que faz o proxy da API em produção
 ```
 
 ### Organização adotada
@@ -126,17 +128,19 @@ src/
 
 ## Decisões técnicas
 
+**Proxy para contornar o CORS.** A API de produtos da Econverse responde sem o cabeçalho `Access-Control-Allow-Origin`, o que faz o navegador bloquear a requisição feita diretamente do front-end. Em vez de recorrer a um proxy público de terceiros ou copiar o JSON para dentro do projeto, a aplicação chama o caminho relativo `/api/produtos`: em desenvolvimento o proxy do Vite encaminha a chamada (`vite.config.ts`) e em produção a função serverless `api/produtos.ts` busca os dados no servidor e os devolve como JSON. O código da aplicação não precisa saber em qual ambiente está rodando.
+
 **Preço "de" riscado.** O layout exibe um preço anterior riscado, mas a API retorna apenas o campo `price`. Optei por não inventar um valor: o espaço permanece reservado no card para preservar o alinhamento vertical do layout, e o elemento é renderizado vazio e marcado com `aria-hidden`. Assim que a API passar a expor um preço anterior, basta preencher esse campo.
 
 **Parcelamento.** O texto "ou 2x de … sem juros" é derivado do preço real de cada produto via `Intl.NumberFormat`, em vez de ser texto fixo.
 
-**Categorias.** A API expõe apenas produtos de celular. As abas são renderizadas conforme o layout e a aba ativa é controlada por estado, pronta para filtrar assim que houver produtos das demais categorias.
+**Categorias.** A API expõe apenas produtos de celular e não retorna um campo de categoria. As abas são renderizadas conforme o layout e filtram de verdade: "Celular" e "Ver todos" exibem a lista, e as demais mostram um estado vazio em vez de repetir os mesmos produtos. Assim que a API passar a devolver a categoria de cada item, basta trocar a condição pelo campo real.
+
+**Imagens repetidas.** Todos os produtos do JSON apontam para a mesma URL de foto — é característica dos dados de teste, não do código.
 
 **Id dos produtos.** A API não envia identificador. O service gera um id estável a partir do nome e do índice, usado como `key` do React e para identificar o produto selecionado.
 
 **Carrossel próprio.** Implementado com `transform: translateX` e estado de página, sem biblioteca externa, respeitando a restrição do teste quanto a bibliotecas de UI.
-
----
 
 ## Autor
 
