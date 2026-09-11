@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://app.econverse.com.br/teste-front-end/junior/tecnologia/:path*"
+    }
+  ]
+}

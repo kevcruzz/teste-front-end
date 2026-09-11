@@ -1,0 +1,135 @@
+.section {
+  padding: $spacing-2xl 0;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-xl;
+}
+
+// Título centralizado com linhas horizontais dos dois lados (conforme layout)
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+  }
+}
+
+.title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  color: $color-primary;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.viewport {
+  flex: 1;
+  overflow: hidden;
+  padding: $spacing-sm 0 $spacing-lg;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.slide {
+  flex-shrink: 0;
+  padding: 0 $spacing-sm;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: $color-text;
+  transition: color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    color: $color-primary;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-2xl 0;
+  text-align: center;
+}
+
+.retry {
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  background-color: $color-primary;
+  border-radius: $radius-sm;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
+
+.empty {
+  padding: $spacing-2xl 0;
+  font-size: $font-size-md;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.skeleton {
+  height: 520px;
+  border-radius: $radius-md;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@include respond-to(md) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+
+  .title {
+    font-size: $font-size-lg;
+  }
+
+  .header {
+    gap: $spacing-sm;
+  }
+
+  .skeleton {
+    height: 420px;
+  }
+}

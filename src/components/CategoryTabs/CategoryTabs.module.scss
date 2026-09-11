@@ -1,0 +1,58 @@
+.tabs {
+  width: 100%;
+  margin-bottom: $spacing-xl;
+}
+
+.list {
+  display: flex;
+  width: 100%;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  overflow: hidden;
+}
+
+.item {
+  flex: 1;
+
+  & + & .tab {
+    border-left: 1px solid $color-border;
+  }
+}
+
+.tab {
+  width: 100%;
+  padding: $spacing-md $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $color-text;
+  background-color: $color-white;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.tabActive {
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+}
+
+@include respond-to(md) {
+  .list {
+    overflow-x: auto;
+    border-radius: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .item {
+    flex: 0 0 auto;
+  }
+
+  .tab {
+    white-space: nowrap;
+    padding: $spacing-sm $spacing-md;
+  }
+}

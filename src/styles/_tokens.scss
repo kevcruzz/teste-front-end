@@ -1,0 +1,70 @@
+// =============================================================
+// Design tokens — extraídos do layout do Figma / vitrine-produtos.png
+// Centralizar aqui evita valores "mágicos" espalhados pelo CSS.
+// =============================================================
+
+// Cores
+$color-primary: #f71963; // rosa Econverse (botões, títulos, destaques)
+$color-primary-dark: #d3134f; // estado :hover do botão
+$color-text: #3f3f40; // texto padrão
+$color-text-muted: #7d7d7d; // preço "de" riscado / textos secundários
+$color-border: #bdbdbd; // bordas das abas
+$color-card-border: #e5e5e5;
+$color-white: #ffffff;
+$color-background: #ffffff;
+$color-overlay: rgba(0, 0, 0, 0.5);
+
+// Tipografia
+$font-family-base: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-md: 1rem; // 16px
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 2rem; // 32px — título da seção
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Espaçamentos
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+
+// Layout
+$container-max-width: 1440px;
+$radius-sm: 4px;
+$radius-md: 8px;
+$shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+// Breakpoints
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: #{$breakpoint-sm}) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: #{$breakpoint-md}) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: #{$breakpoint-lg}) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: #{$breakpoint-xl}) { @content; }
+  }
+}
+
+// Trunca o texto em N linhas (usado na descrição do card)
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
