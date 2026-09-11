@@ -1,6 +1,6 @@
 import type { ProductsResponse, ProductWithId } from '../types/product';
 
-const PRODUCTS_ENDPOINT = '/api/lista-produtos/produtos.json';
+const PRODUCTS_ENDPOINT = '/api/produtos';
 
 /**
  * Busca a lista de produtos e normaliza o retorno adicionando um id estável.

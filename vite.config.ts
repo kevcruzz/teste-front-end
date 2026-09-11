@@ -3,11 +3,11 @@ import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
 
 const API_PROXY = {
-  '/api': {
+  '/api/produtos': {
     target: 'https://app.econverse.com.br',
     changeOrigin: true,
-    rewrite: (path: string) =>
-      path.replace(/^\/api/, '/teste-front-end/junior/tecnologia'),
+    rewrite: () =>
+      '/teste-front-end/junior/tecnologia/lista-produtos/produtos.json',
   },
 };
 
